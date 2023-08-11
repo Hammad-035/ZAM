@@ -1,0 +1,260 @@
+
+.widget {
+    position: relative;
+    width: 534px;
+    height: 211px;
+    border-radius: 20px;
+    background: rgb(18 1 1 / 50%);
+    left: 764px;
+    bottom: 304px;
+}
+
+.widget .left {
+    position: absolute;
+    left: 0;
+    width: 200px;
+}
+
+.widget .right {
+    position: absolute;
+    right: 50px;
+    width: 200px;
+    color: #fff;
+    margin: 50px 0;
+}
+
+.icon {
+    width: 65%;
+    margin-bottom: -30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.weather-status {
+    color: #fff;
+    text-align: center;
+    margin-top: 0;
+}
+
+.widget .right .city {
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    text-shadow: 1px 1px 5px #b38e8e;
+}
+
+.widget .right .degree {
+    font-size: 3em;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    text-shadow: 1px 1px 5px #707070;
+}
+
+.widget .bottom {
+    width: 100%;
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+}
+
+.widget .bottom div {
+    margin: 5px 10px 5px 10px;
+    text-align: center;
+    line-height: 100%;
+    font-size: 0.83em;
+    text-shadow: 1px 1px 5px #707070;
+}
+
+.bottom div {
+    display: block;
+}
+
+.img-fluid {
+    max-width: 60%;
+    height: auto;
+    padding-left: 15px;
+}
+
+@media (max-width: 768px) {
+    .img-fluid {
+        display: block;
+        max-width: 52%; /* Adjust the width as needed */
+        margin: 0 auto; /* Center the image horizontally */
+    }
+
+    .widget .img-fluid {
+        margin: 10px auto; /* Adjust margin as needed */
+    }
+
+    
+    .widget {
+        position: relative;
+        width: 500px;
+        height: 200px;
+        border-radius: 20px;
+        background: rgb(18 1 1 / 50%);
+        left: 130px;
+        top: 3px;
+        bottom: 304px;
+        margin-bottom: 10px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .img-fluid {
+        display: block;
+        max-width: 50%; /* Adjust the width as needed */
+        margin: 0 auto; /* Center the image horizontally */
+    }
+
+    .widget .img-fluid {
+        margin: 10px auto; /* Adjust margin as needed */
+    }
+
+    
+    .widget {
+        position: relative;
+        width: 465px;
+        height: 181px;
+        border-radius: 20px;
+        background: rgb(18 1 1 / 50%);
+        left: 10px;
+        top: 3px;
+        bottom: 304px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 425px) {
+    .img-fluid {
+        display: block;
+        max-width: 48%; /* Adjust the width as needed */
+        margin: 0 auto; /* Center the image horizontally */
+    }
+
+    .widget .img-fluid {
+        margin: 10px auto; /* Adjust margin as needed */
+    }
+
+    
+    .widget {
+        position: relative;
+        width: 400px;
+        height: 181px;
+        border-radius: 20px;
+        background: rgb(18 1 1 / 50%);
+        left: 15px;
+        top: 3px;
+        bottom: 304px;
+        margin-bottom: 10px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .img-fluid {
+        display: block;
+        max-width: 50%; /* Adjust the width as needed */
+        margin: 0 auto; /* Center the image horizontally */
+    }
+
+    .widget .img-fluid {
+        margin: 10px auto; /* Adjust margin as needed */
+    }
+
+    
+    .widget {
+        position: relative;
+        width: 465px;
+        height: 181px;
+        border-radius: 20px;
+        background: rgb(18 1 1 / 50%);
+        left: 10px;
+        top: 3px;
+        bottom: 304px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 375px) {
+    .img-fluid {
+        display: block;
+        max-width: 50%; /* Adjust the width as needed */
+        margin: 0 auto; /* Center the image horizontally */
+    }
+
+    .widget .img-fluid {
+        margin: 10px auto; /* Adjust margin as needed */
+    }
+
+    
+    .widget {
+        position: relative;
+        width: 365px;
+        height: 175px;
+        border-radius: 20px;
+        background: rgb(18 1 1 / 50%);
+        left: 7px;
+        top: 3px;
+        bottom: 304px;
+        margin-bottom: 10px;
+    }
+   .city {
+    position: relative;
+    left: 50px;
+    font-size: 15px !important;
+   }
+   .degree {
+    position: relative;
+    left: 45px;
+    font-size: 15px !important;
+   }
+    .icon {
+        width: 50%;
+    }
+}
+
+@media (max-width: 320px) {
+    .img-fluid {
+        display: block;
+        max-width: 65%; /* Adjust the width as needed */
+        margin: 0 auto; /* Center the image horizontally */
+    }
+
+    .widget .img-fluid {
+        margin: 10px auto; /* Adjust margin as needed */
+    }
+
+    
+    .widget {
+        position: relative;
+        width: 300px;
+        height: 170px;
+        border-radius: 20px;
+        background: rgb(18 1 1 / 50%);
+        left: 7px;
+        top: 3px;
+        bottom: 304px;
+        margin-bottom: 10px;
+    }
+   .city {
+    position: relative;
+    left: 55px;
+    font-size: 15px !important;
+   }
+   .degree {
+    position: relative;
+    left: 50px;
+    font-size: 15px !important;
+   }
+    .icon {
+        width: 45%;
+    }
+}
