@@ -1,19 +1,30 @@
 import React, { useState, useRef, useEffect } from 'react';
-
+import axios from 'axios';
 const Naat = () => {
-  const audioList = [
-    '1. Duhai Dun Ga Mein Jis Waqt Keh Kar Ya Rasool-Allah.mp3',
-    '2. Khudaaraa Zara Haath Seenay Pay Rakh Do.mp3',
-    '3. Hai Saraapaa Ujala Hamara Nabi.mp3',
-
-  ]; // Your audio list here
+ const [audioList , setAudioList] = useState([]);
   const audioRef = useRef(null);
   const [selectedAudio, setSelectedAudio] = useState(false);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(null);
   const [name , setName] = useState(true);
 
+
+  const fetchData  = () => {
+    let apiURL = 'https://zadeashiqanemustafa.com/api/naat'
+    axios.get(apiURL).then((response)=> {
+      console.log('response', response.data)
+      setAudioList(response.data)
+    }).catch((err)=> {
+      console.log(err)
+    })
+  }
+
+  useEffect(()=> {
+    fetchData();
+  }, [])
+
   useEffect(() => {
     if (selectedAudio) {
+      audioRef.current.src = `https://zadeashiqanemustafa.com/storage/${selectedAudio.link}`
       audioRef.current.load();
       audioRef.current.play().catch((error) => {
         console.error('Failed to play audio:', error);
@@ -29,11 +40,11 @@ const Naat = () => {
 
   const handleAudioClick = (index) => {
     setCurrentTrackIndex(index);
-    setName(audioList[index])
+    setName(audioList[index].name)
   };
   const handlePlay = ()=> {
     if(currentTrackIndex !== null) {
-      setName(audioList[currentTrackIndex]);
+      setName(audioList[currentTrackIndex].name);
     }
   }
  
@@ -48,21 +59,21 @@ const Naat = () => {
         <section className='audio-section'>
         <h5>{name}</h5>
           <audio ref={audioRef} controls autoPlay onEnded={handleEnded} onPlay={handlePlay}>
-            {selectedAudio && <source src={`/naat/${selectedAudio}`} type='audio/mpeg' />}
+            {selectedAudio && <source src={`https://zadeashiqanemustafa.com/storage/${selectedAudio.link}`} type='audio/mpeg' />}
           </audio>
         </section>
 
-        <ul>
+        <ol>
           {audioList.map((audio, index) => (
             <li
-              key={index}
+              key={audio.id}
               onClick={() => handleAudioClick(index)}
               className={selectedAudio === audio ? 'active' : ''}
             >
-              {audio}
+              {audio.name}
             </li>
           ))}
-        </ul>
+        </ol>
       </div>
     </>
   );

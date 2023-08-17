@@ -8,11 +8,13 @@ audio {
     display: flex;
     justify-content: space-evenly;
 }
-ul li  {
+ol li  {
     cursor: pointer;
     font-weight: 400;
     font-size: 20px;
-    list-style: none;
+}
+h5 {
+    color: rgb(79, 121, 79);
 }
 
 @media (max-width: 480px) {

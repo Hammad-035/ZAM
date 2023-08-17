@@ -5,13 +5,8 @@ import Clock from '../Clock';
 const Home = () => {
   const [data , setData] = useState({});
 
-  const apiKey = '4ce8c9ae39c17de4b81f33628707fc69';
-
-  const getWeatherDetail = (cityName) => {
-    if (!cityName) return;
-    
-    const apiURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + apiKey;
-    
+  const getWeatherDetail = () => {
+    const apiURL = "https://zadeashiqanemustafa.com/api/weather"
     axios.get(apiURL)
       .then((res) => {
         console.log('response', res.data);
@@ -25,7 +20,7 @@ const Home = () => {
   const weatherMain = data?.weather?.[0]?.main ?? "Unknown";
   
   useEffect(() => {
-    getWeatherDetail('Lahore');
+    getWeatherDetail();
   }, []);
   return (
      <>
@@ -36,22 +31,22 @@ const Home = () => {
   <div className="weather-container">
     <div className="widget">
       <div className="left">
-        <img src="/images/CloudIcon.png" alt="zam-logo" className="icon" />
-        <h5 className="weather-status">{weatherMain}</h5>
+        <img src={data?.current?.weather_icons} alt="zam-logo" className="icon" />
+      
       </div>
       <div className="right">
-        <h5 className="city">{data?.name} {data?.sys?.country}</h5> 
-        <h5 className="degree">{((data?.main?.temp) - 273.15).toFixed(0)}°C</h5>
+        <h5 className="city">{data.location?.name} </h5> 
+        <h5 className="degree">{data?.current?.temperature}°C</h5>
       </div>
       <div className="bottom">
         <div>
-         Wind speed: {data?.wind?.speed} mph
+         Wind speed: {data?.current?.wind_speed} mph
         </div>
         <div>
-        Clouds:  {data?.clouds?.all} %
+        Clouds:  {data?.current?.cloudcover} %
         </div>
         <div>
-       Humidity : {data?.main?.humidity} %
+       Humidity : {data?.current?.humidity} %
         </div>
       </div>
     </div>

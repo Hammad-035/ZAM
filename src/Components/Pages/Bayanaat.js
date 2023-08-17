@@ -1,25 +1,32 @@
 import React, { useState, useRef, useEffect } from 'react';
-
+import axios from 'axios';
 const Bayanaat = () => {
-  const audioList = [
-    '1. Naik Logon Ki Sohbat.mp3',
-    '2. Imaan Kya Hai.mp3',
-    '3. Imaan Ke Baad Doosri Cheez Taqwa Hai.mp3',
-    '4. Teesri Cheez Schon Ke Sath Ho Jao.mp3',
-    '5. Jis Ka Rab Us Ka Sab.mp3',
-    '6. Ghaus Pak (رضی اللہ عنہ) Ki Shan.mp3',
-    '7. Aala Hazrat (رضی اللہ عنہ) Ka Ghaus Pak (رضی اللہ عنہ) Ki Shan Ke Baray Mein Aqeedah.mp3',
-    '8. Darood Taaj.mp3',
-    '9. Shan e Syeduna Imam e Hussain(رضی اللہ عنہ).mp3',
-    '10. Surah Baqarah Ayat 155 Ka Tarjuma o Tafseer.mp3',
-  ]; // Your audio list here
+  const [audioList , setAudioList] = useState([])
   const audioRef = useRef(null);
   const [selectedAudio, setSelectedAudio] = useState(false);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(null);
   const [name ,  setName] =  useState('');
 
+
+
+  const fetchData = ()=> {
+    let apiURL = 'https://zadeashiqanemustafa.com/api/bayan'
+    axios.get(apiURL).then((response)=> {
+      console.log(response.data);
+      setAudioList(response.data)
+    }).catch((err)=>{
+      console.log(err)
+    })
+
+  }
+
+useEffect(()=>{
+  fetchData();
+}, []);
+
   useEffect(() => {
     if (selectedAudio) {
+      audioRef.current.src = `https://zadeashiqanemustafa.com/storage/${selectedAudio.link}`
       audioRef.current.load();
       audioRef.current.play().catch((error) => {
         console.error('Failed to play audio:', error);
@@ -35,11 +42,11 @@ const Bayanaat = () => {
 
   const handleAudioClick = (index) => {
     setCurrentTrackIndex(index);
-    setName(audioList[index])
+    setName(audioList[index].name)
   };
   const handlePlay = () => {
     if(currentTrackIndex !== null) {
-      setName(audioList[currentTrackIndex]);
+      setName(audioList[currentTrackIndex].name);
     }
   }
 
@@ -53,21 +60,21 @@ const Bayanaat = () => {
         <section className='audio-section'>
         <h5>{name}</h5>
           <audio ref={audioRef} controls autoPlay onEnded={handleEnded} onPlay={handlePlay}>
-            {selectedAudio && <source src={`/bayaan/${selectedAudio}`} type='audio/mpeg' />}
+            {selectedAudio && <source src={`https://zadeashiqanemustafa.com/storage/${selectedAudio.link}`} type='audio/mpeg' />}
           </audio>
         </section>
 
-        <ul>
+        <ol>
           {audioList.map((audio, index) => (
             <li
-              key={index}
+              key={audio.id}
               onClick={() => handleAudioClick(index)}
               className={selectedAudio === audio ? 'active' : ''}
             >
-              {audio}
+              {audio.name}
             </li>
           ))}
-        </ul>
+        </ol>
       </div>
     </>
   );
